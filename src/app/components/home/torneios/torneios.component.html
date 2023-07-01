@@ -1,0 +1,36 @@
+<div
+  class="pt-5 w-full flex flex-column justify-content-center align-items-center gap-3"
+  *ngFor="let torneio of torneios"
+>
+  <div
+    class="w-8 py-3 px-3 surface-card border-round-md flex justify-content-between align-items-center shadow-4"
+  >
+    <h3 class="text-bold text-2xl">{{ torneio.nome }}</h3>
+    <a>
+      <p-button
+        (click)="showDialog()"
+        icon="pi pi-angle-right"
+        iconPos="right"
+        label="Inscrever"
+      ></p-button>
+    </a>
+  </div>
+</div>
+
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form action="" class="w-3 h-10rem">
+    <p-dropdown
+      [options]="torneios"
+      optionLabel="name"
+      class="w-full"
+      [filter]="true"
+    ></p-dropdown>
+  </form>
+</p-dialog>
