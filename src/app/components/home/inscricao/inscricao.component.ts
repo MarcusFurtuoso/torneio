@@ -92,7 +92,7 @@ export class InscricaoComponent implements OnInit {
       },
       error: () => this.alertService.showErrorAlert("erro ao buscar usuários")
     });
-    
+
     this.createForm();
   }
 
@@ -107,10 +107,10 @@ export class InscricaoComponent implements OnInit {
     const inscricao = new InscricaoForm();
 
     inscricao.categoriaId = this.form.get('categoriaSelecionada')?.value;
-  
+
     const usuario1 = JSON.parse(localStorage.getItem('usuario-logado')!);
     inscricao.usuario1Id = usuario1.id;
-  
+    
     inscricao.usuario2Id = this.form.get('usuarioSelecionado')?.value;
 
     this.inscricaoService.realizarInscricao(inscricao).subscribe({
