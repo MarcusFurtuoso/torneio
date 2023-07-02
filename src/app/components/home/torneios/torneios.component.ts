@@ -12,14 +12,7 @@ import { TorneioService } from 'src/app/services/torneio.service';
 })
 export class TorneiosComponent implements OnInit {
 
-    torneios: Torneio[] = [
-      {
-        id: 1,
-        nome: 'teste',
-        premiacao: '',
-        categorias: []
-      }
-    ];
+    torneios: Torneio[] = [];
 
     form!: FormGroup;
 
