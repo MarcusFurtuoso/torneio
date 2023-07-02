@@ -30,16 +30,16 @@ export class TorneiosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.service.buscarTorneios().subscribe({
-    //   next: (res) => {
-    //     this.torneios = res
-    //     console.log(this.torneios);
-    //   },
-    //   error: (err) => {
+    this.service.buscarTorneios().subscribe({
+      next: (res) => {
+        this.torneios = res
+        console.log(this.torneios);
+      },
+      error: (err) => {
 
-    //   }
-    // })
-    
+      }
+    })
+
     this.createForm();
   }
 

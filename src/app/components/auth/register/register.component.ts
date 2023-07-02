@@ -52,12 +52,12 @@ export class RegisterComponent implements OnInit{
 
       next: () => {
         this.toggleLoading();
-        this.alertService.showSuccessAlert("user resgistered")
+        this.alertService.showSuccessAlert("Usuário registrado com sucesso!")
         this.router.navigate([""])
       },
       error: (err) => {
         this.toggleLoading();
-        this.alertService.showErrorAlert("register error")
+        this.alertService.showErrorAlert("Erro de cadastro!")
       },
 
     });

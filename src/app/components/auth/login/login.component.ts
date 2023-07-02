@@ -48,12 +48,12 @@ export class LoginComponent implements OnInit {
 
       next: () => {
         this.toggleLoading();
-        this.alertService.showSuccessAlert("successo ao fazer login")
+        this.alertService.showSuccessAlert("Login efetuado com sucesso!")
         this.router.navigate([""]);
       },
       error: (err) => {
         this.toggleLoading();
-        this.alertService.showErrorAlert("erro ao fazer login")
+        this.alertService.showErrorAlert("Erro ao fazer login!")
       }
 
     });
