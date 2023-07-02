@@ -16,55 +16,12 @@ export class InscricaoComponent implements OnInit {
 
   loading: boolean = false;
 
-  torneioAtual: Torneio = {
-    id: 1,
-    nome: "Torneio 1",
-    premiacao: "1000",
-    categorias: []
-  };
+  torneioAtual!: Torneio;
 
   form!: FormGroup;
 
-  categorias: Categoria[] = [
-    {
-      id: 1,
-      nome: "Categoria 1"
-    },
-    {
-      id: 2,
-      nome: "Categoria 2"
-    },
-    {
-      id: 3,
-      nome: "Categoria 3"
-    },
-    {
-      id: 4,
-      nome: "Categoria 4"
-    }
-  ];
-  usuarios: Usuario[] = [
-    {
-      id: 1,
-      nome: "Bruno",
-      login: "usu1@gmail.com"
-    },
-    {
-      id: 2,
-      nome: "Marcus",
-      login: "usu2@gmail.com"
-    },
-    {
-      id: 3,
-      nome: "Pedro",
-      login: "usu3@gmail.com"
-    },
-    {
-      id: 4,
-      nome: "João",
-      login: "usu4@gmail.com"
-    }
-  ];
+  categorias: Categoria[] = [];
+  usuarios: Usuario[] = [];
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -106,12 +63,14 @@ export class InscricaoComponent implements OnInit {
   onSubmit() {
     const inscricao = new InscricaoForm();
 
-    inscricao.categoriaId = this.form.get('categoriaSelecionada')?.value;
+    const categoriaId = this.form.get('categoriaSelecionada')?.value; 
+    inscricao.categoriaId = categoriaId.id;
   
     const usuario1 = JSON.parse(localStorage.getItem('usuario-logado')!);
     inscricao.usuario1Id = usuario1.id;
   
-    inscricao.usuario2Id = this.form.get('usuarioSelecionado')?.value;
+    const usuario2 = this.form.get('usuarioSelecionado')?.value;
+    inscricao.usuario2Id = usuario2.id;
 
     this.inscricaoService.realizarInscricao(inscricao).subscribe({
 
