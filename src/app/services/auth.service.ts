@@ -9,7 +9,7 @@ import {AuthResponse} from "../dto/auth-response";
 })
 export class AuthService {
 
-  private apiUrl: string = "http://localhost:8080/api/usuario";
+  private apiUrl: string = "http://localhost:8080/api/usuarios";
 
   constructor(
     private httpClient: HttpClient,

@@ -8,7 +8,7 @@ import { Torneio } from '../dto/model';
 })
 export class TorneioService {
 
-  private baseUrl: string = "http://localhost:8080/api/torneio";
+  private baseUrl: string = "http://localhost:808/api/torneio";
 
   constructor(private http: HttpClient) {}
 
