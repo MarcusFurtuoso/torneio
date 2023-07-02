@@ -16,5 +16,8 @@ export class TorneioService {
     return this.http.get<Torneio[]>(this.baseUrl);
   }
 
+  buscarTorneioPorId(torneioId: string | null): Observable<Torneio> {
+    return this.http.get<Torneio>(`${this.baseUrl}/${torneioId}`);
+  }
 
 }

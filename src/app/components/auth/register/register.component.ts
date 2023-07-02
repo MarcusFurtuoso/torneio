@@ -1,9 +1,9 @@
-import { UserRegister } from '../../../models/user-register';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { CadastroForm } from 'src/app/dto/model';
 
 @Component({
   selector: 'app-register',
@@ -23,25 +23,21 @@ export class RegisterComponent implements OnInit{
   ) {}
 
   public ngOnInit(): void {
-    this.createForm(new UserRegister());
+    this.createForm(new CadastroForm());
   };
 
-  public createForm(user: UserRegister): void {
+  public createForm(cadastroForm: CadastroForm): void {
     this.form = this.formBuilder.group({
-      firstName: [
-        user.firstName,
+      nome: [
+        cadastroForm.nome,
         Validators.required
       ],
-      lastName: [
-        user.lastName,
+      login: [
+        cadastroForm.login,
         Validators.required
       ],
-      email: [
-        user.email,
-        Validators.required
-      ],
-      password: [
-        user.password,
+      senha: [
+        cadastroForm.senha,
         Validators.required
       ]
     });
@@ -50,9 +46,9 @@ export class RegisterComponent implements OnInit{
   public onSubmit(): void {
     this.toggleLoading();
 
-    const user = this.form.getRawValue() as UserRegister;
+    const user = this.form.getRawValue() as CadastroForm;
 
-    this.authService.signUp(user).subscribe({
+    this.authService.cadastro(user).subscribe({
 
       next: () => {
         this.toggleLoading();

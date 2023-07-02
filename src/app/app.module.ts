@@ -5,12 +5,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 // components app
 import { AppComponent } from './app.component';
 import { AlertComponent } from './components/alert/alert.component';
-import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AuthComponent } from './layout/auth/auth.component';
@@ -29,12 +29,7 @@ import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import {DialogModule} from 'primeng/dialog'
 import {DropdownModule} from 'primeng/dropdown'
-
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { TorneiosComponent } from './components/home/torneios/torneios.component';
-import { customErrorHandler } from "./error/global-error-handler.service";
-import { httpRequestInterceptorErrorsProvider } from "./interceptors/error.interceptor";
-import { httpRequestInterceptorJwtProvider } from "./interceptors/jwt.interceptor";
 import { InscricaoComponent } from './components/home/inscricao/inscricao.component';
 
 @NgModule({
@@ -45,8 +40,6 @@ import { InscricaoComponent } from './components/home/inscricao/inscricao.compon
     RegisterComponent,
     LoginComponent,
     AlertComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
     TorneiosComponent,
     InscricaoComponent
   ],
@@ -56,6 +49,7 @@ import { InscricaoComponent } from './components/home/inscricao/inscricao.compon
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    FormsModule,
 
     // components
     InputTextModule,
@@ -71,9 +65,6 @@ import { InscricaoComponent } from './components/home/inscricao/inscricao.compon
     DropdownModule
   ],
   providers: [
-    httpRequestInterceptorJwtProvider,
-    httpRequestInterceptorErrorsProvider,
-    customErrorHandler,
     MessageService,
   ],
   bootstrap: [AppComponent]

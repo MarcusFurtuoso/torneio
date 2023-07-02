@@ -1,9 +1,9 @@
 import { AlertService } from '../../../services/alert.service';
-import { UserCredentials } from '../../../models/user-credentials';
 import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginForm } from 'src/app/dto/model';
 
 @Component({
   selector: 'app-login',
@@ -23,18 +23,17 @@ export class LoginComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.createForm(new UserCredentials())
+    this.createForm(new LoginForm())
   };
 
-  // validate password and email
-  private createForm(credentials: UserCredentials): void {
+  private createForm(loginForm: LoginForm): void {
     this.form = this.formBuilder.group({
-      email: [
-        credentials.email,
+      login: [
+        loginForm.login,
         Validators.required
       ],
-      password: [
-        credentials.password,
+      senha: [
+        loginForm.senha,
         Validators.required
       ],
     });
@@ -43,18 +42,18 @@ export class LoginComponent implements OnInit {
   public onSubmit(): void {
     this.toggleLoading();
 
-    const credentials = this.form.getRawValue() as UserCredentials;
+    const credentials = this.form.getRawValue() as LoginForm;
 
-    this.authService.signIn(credentials).subscribe({
+    this.authService.login(credentials).subscribe({
 
       next: () => {
         this.toggleLoading();
-        this.alertService.showSuccessAlert("login successful")
+        this.alertService.showSuccessAlert("successo ao fazer login")
         this.router.navigate([""]);
       },
       error: (err) => {
         this.toggleLoading();
-        this.alertService.showErrorAlert("login error")
+        this.alertService.showErrorAlert("erro ao fazer login")
       }
 
     });

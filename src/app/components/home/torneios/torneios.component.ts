@@ -1,5 +1,7 @@
+import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Torneio } from 'src/app/dto/model';
+import { FormGroup } from '@angular/forms';
+import { Categoria, Torneio, Usuario } from 'src/app/dto/model';
 import { AlertService } from 'src/app/services/alert.service';
 import { TorneioService } from 'src/app/services/torneio.service';
 
@@ -10,29 +12,41 @@ import { TorneioService } from 'src/app/services/torneio.service';
 })
 export class TorneiosComponent implements OnInit {
 
-    visible: boolean = false;
-    torneios!: Torneio[];
-    selecteTorneio!: Torneio;
+    torneios: Torneio[] = [
+      {
+        id: 1,
+        nome: 'teste',
+        premiacao: '',
+        categorias: []
+      }
+    ];
+
+    form!: FormGroup;
 
   constructor(
     private service: TorneioService,
-    private alert: AlertService
-    ) {}
+    private alert: AlertService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.service.buscarTorneios().subscribe({
-      next: (res) => {
-        this.torneios = res
-        console.log(this.torneios);
+    // this.service.buscarTorneios().subscribe({
+    //   next: (res) => {
+    //     this.torneios = res
+    //     console.log(this.torneios);
+    //   },
+    //   error: (err) => {
 
-      },
-      error: (err) => {
-
-      }
-    })
+    //   }
+    // })
+    
+    this.createForm();
   }
 
-  showDialog() {
-    this.visible = !this.visible;
-  }
+  private createForm(): void {
+    this.form = this.formBuilder.group({
+      categoriaSelecionada: [null],
+      usuarioSelecionado: [null]
+    });
+  };
 }

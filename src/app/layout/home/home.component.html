@@ -1,15 +1,14 @@
 <!-- extract for component -->
 <header class="header">
   <nav class="my-navbar font-semibold">
-    <a href="" class="text-xl">Dashboard</a>
+    <a href="" class="text-xl">Prova web1</a>
     <ul>
       <li></li>
       <li></li>
       <li></li>
       <li class="current-user cursor-pointer" (click)="menu.toggle($event)">
 
-        <span class="text-base font-normal">DevBrunoRafael</span>
-        <p-avatar icon="pi pi-user" styleClass="mr-2"></p-avatar>
+        <i class="pi pi-sign-out"  style="font-size: 1.5rem"></i>
 
         <p-toast></p-toast>
         <p-menu #menu [model]="items" [popup]="true"  [style]="{ minWidth : '14em', 'margin-top' : '.5rem' }"></p-menu>

@@ -5,7 +5,7 @@
     <a
       routerLink="/login"
       class="pi pi-angle-left"
-      style="font-size: 2rem; text-decoration: none; color: #5EEAD4;"
+      style="font-size: 2rem; text-decoration: none; color: var(--primary-color);"
     >
     </a>
     <h2 class="text-900 text-3xl font-medium flex-grow-1">Create Account</h2>
@@ -13,84 +13,57 @@
 
   <form [formGroup]="form" (submit)="onSubmit()">
 
-    <!-- input first name -->
-
-    <div class="field p-fluid mt-2">
-      <label for="firstName" class="block text-900 font-medium mb-2">First name</label>
-      <input
-        id="firstName"
-        type="text"
-        placeholder="Inform your first name"
-        pInputText
-        formControlName="firstName"
-        aria-describedby="first-name-help"
-      >
-      <small
-        id="first-name-help" *ngIf="hasErrors('firstName')"
-        class="p-error">First name is required.
-      </small>
-    </div>
-
     <!-- input last name -->
 
     <div class="field p-fluid mt-2">
-      <label for="lastName" class="block text-900 font-medium mb-2">Last name</label>
+      <label for="nome" class="block text-900 font-medium mb-2">Nome</label>
       <input
-        id="lastName"
+        id="nome"
         type="text"
-        placeholder="Inform your last name"
+        placeholder="Nome"
         pInputText
-        formControlName="lastName"
-        aria-describedby="last-name-help"
+        formControlName="nome"
+        aria-describedby="name-help"
       >
       <small
-        id="last-name-help" *ngIf="hasErrors('lastName')"
-        class="p-error">Last name is required.
+        id="name-help" *ngIf="hasErrors('nome')"
+        class="p-error">Nome obrigatório
       </small>
     </div>
 
     <!-- input email -->
 
     <div class="field p-fluid mt-2">
-      <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+      <label for="login" class="block text-900 font-medium mb-2">Login</label>
       <input
-        id="email1"
+        id="login"
         type="text"
-        placeholder="Inform your email address"
+        placeholder="Login"
         pInputText
-        formControlName="email"
+        formControlName="login"
         aria-describedby="email-help"
       >
       <small
-        id="email-help" *ngIf="hasErrors('email')"
-        class="p-error">Email is required.
+        id="email-help" *ngIf="hasErrors('login')"
+        class="p-error">Login obrigatório
       </small>
     </div>
 
     <!-- input password -->
 
     <div class="field p-fluid mt-2">
-      <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+      <label for="senha" class="block text-900 font-medium mb-2">Password</label>
       <p-password
-        id="password1"
-        placeholder="Inform your password"
+        id="senha"
+        placeholder="Senha"
         [toggleMask]="true"
-        formControlName="password"
+        formControlName="senha"
         aria-describedby="password-help"
       >
-        <ng-template pTemplate="footer">
-          <p-divider></p-divider>
-          <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-            <li>At least one lowercase</li>
-            <li>At least one uppercase</li>
-            <li>At least one numeric</li>
-            <li>Minimum 8 characters</li>
-          </ul>
-        </ng-template>
       </p-password>
       <small
-        id="password-help" *ngIf="hasErrors('password')"
-        class="p-error">Password invalid.
+        id="password-help" *ngIf="hasErrors('senha')"
+        class="p-error">Senha obrigatória
       </small>
     </div>
 
@@ -102,7 +75,6 @@
       label="Sign Up"
       icon="pi pi-user-plus"
       class="w-full mt-3"
-      [disabled]="form.invalid"
       [loading]="loading"
     >
     </button>

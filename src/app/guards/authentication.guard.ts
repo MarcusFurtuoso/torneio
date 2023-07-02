@@ -1,4 +1,3 @@
-import { TokenService } from '../services/token.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import {AuthService} from "../services/auth.service";
@@ -14,7 +13,7 @@ export class AuthenticationGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot,  state: RouterStateSnapshot): boolean {
-    if (this.authService.hasUserLoggedIn()) {
+    if (this.authService.temUsuarioLogado()) {
       return true;
     }
 

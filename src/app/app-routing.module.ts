@@ -5,9 +5,7 @@ import {HomeComponent} from "./layout/home/home.component";
 import {AuthenticationGuard} from "./guards/authentication.guard";
 import {LoginComponent} from "./components/auth/login/login.component";
 import {RegisterComponent} from "./components/auth/register/register.component";
-import {ForgotPasswordComponent} from "./components/auth/forgot-password/forgot-password.component";
 import {AuthenticatedGuard} from "./guards/authenticated.guard";
-import {ResetPasswordComponent} from "./components/auth/reset-password/reset-password.component";
 import { TorneiosComponent } from './components/home/torneios/torneios.component';
 import { InscricaoComponent } from './components/home/inscricao/inscricao.component';
 
@@ -15,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    // canActivate: [AuthenticationGuard]
+    canActivate: [AuthenticationGuard],
     children: [
       { path: '', redirectTo: 'torneios', pathMatch: 'full' },
       {
@@ -23,26 +21,21 @@ const routes: Routes = [
         component: TorneiosComponent
       },
       {
-        path: "inscricao",
+        path: "inscricao/:id",
         component: InscricaoComponent
       }
     ]
   },
-
-
-
-  // {
-  //   path: '',
-  //   component: AuthComponent,
-  //   canActivate: [AuthenticatedGuard],
-  //   children: [
-  //     { path: '', redirectTo: 'login', pathMatch: 'full' },
-  //     { path: 'login', component: LoginComponent },
-  //     { path: 'register', component: RegisterComponent },
-  //     { path: 'forgot-password', component: ForgotPasswordComponent },
-  //     { path: 'reset-password', component: ResetPasswordComponent }
-  //   ]
-  // },
+  {
+    path: '',
+    component: AuthComponent,
+    canActivate: [AuthenticatedGuard],
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ]
+  },
   {
     path: '**',
     redirectTo: ''

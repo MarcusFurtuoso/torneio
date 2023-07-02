@@ -13,7 +13,7 @@ export class AuthenticatedGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean  {
-    if (this.authService.hasUserLoggedIn()) {
+    if (this.authService.temUsuarioLogado()) {
       this.router.navigate([""]);
       return false;
     }
