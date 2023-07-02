@@ -63,15 +63,14 @@ export class InscricaoComponent implements OnInit {
   onSubmit() {
     const inscricao = new InscricaoForm();
 
-    inscricao.categoriaId = this.form.get('categoriaSelecionada')?.value;
-
     const categoriaId = this.form.get('categoriaSelecionada')?.value;
     inscricao.categoriaId = categoriaId.id;
 
     const usuario1 = JSON.parse(localStorage.getItem('usuario-logado')!);
     inscricao.usuario1Id = usuario1.id;
 
-    inscricao.usuario2Id = this.form.get('usuarioSelecionado')?.value;
+    const usuario2 = this.form.get('usuarioSelecionado')?.value;
+    inscricao.usuario2Id = usuario2.id;
 
     this.inscricaoService.realizarInscricao(inscricao).subscribe({
 

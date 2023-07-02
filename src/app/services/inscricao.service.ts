@@ -8,7 +8,6 @@ import { InscricaoForm } from '../dto/model';
 })
 export class InscricaoService {
 
-  
   private baseUrl: string = "http://localhost:8080/api/inscricao";
 
   constructor(private http: HttpClient) {}

@@ -4,16 +4,15 @@ import { Usuario } from '../dto/model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
-
-  private baseUrl: string = "http://localhost:8080/api/usuarios";
+  private baseUrl: string = 'http://localhost:8080/api/usuarios';
 
   constructor(private http: HttpClient) {}
 
   public buscarUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.baseUrl);
+    const usuario = JSON.parse(localStorage.getItem('usuario-logado')!);
+    return this.http.get<Usuario[]>(`${this.baseUrl}/${usuario.id}`);
   }
-
 }
