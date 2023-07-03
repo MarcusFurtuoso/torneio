@@ -3,30 +3,30 @@
     <div class="mb-5 font-bold text-2xl text-center">
       {{torneioAtual.nome}}
     </div>
-    
-    <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-column 
+
+    <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-column
     justify-content-between gap-3">
-  
-  
+
+
       <div class="field p-fluid mt-2 flex flex-column gap-3">
-          <p-dropdown  
+          <p-dropdown
           [options]="categorias"
           formControlName="categoriaSelecionada"
           optionLabel="nome"
           placeholder="Selecione a categoria"
         />
-  
-          <p-dropdown 
+
+          <p-dropdown
           [options]="usuarios"
           formControlName="usuarioSelecionado"
           optionLabel="nome"
-          placeholder="Selecione um usuário" 
-          [filter]="true" 
+          placeholder="Selecione um usuário"
+          [filter]="true"
           filterBy="nome"
         />
       </div>
-  
-  
+
+
       <!-- // button submit -->
       <button
         pButton pRipple
@@ -36,7 +36,17 @@
         [loading]="loading"
       >
       </button>
-  
+
+      <button
+        pButton pRipple
+        type="cancel"
+        label="Cancelar"
+        class="w-full mt-4"
+        (click)='onCancel()'
+        [loading]="loading"
+      >
+      </button>
+
     </form>
   </div>
 </div>

@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.items = [
       {
-        label: 'Quit',
+        label: 'Sair',
         icon: 'pi pi-fw pi-power-off',
         style: { 'font-size' : '14px' },
         command: () => {

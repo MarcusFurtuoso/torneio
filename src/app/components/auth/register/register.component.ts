@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit{
       },
       error: (err) => {
         this.toggleLoading();
-        this.alertService.showErrorAlert("Erro de cadastro!")
+        this.alertService.showErrorAlert("Erro ao fazer cadastro!")
       },
 
     });

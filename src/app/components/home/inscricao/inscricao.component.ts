@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -29,7 +30,8 @@ export class InscricaoComponent implements OnInit {
     private alertService: AlertService,
     private inscricaoService: InscricaoService,
     private torneioService: TorneioService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -40,14 +42,14 @@ export class InscricaoComponent implements OnInit {
         this.torneioAtual = res
         this.categorias = res.categorias
       },
-      error: () => this.alertService.showErrorAlert("erro ao buscar torneio")
+      error: () => this.alertService.showErrorAlert("Erro ao buscar torneio!")
     });
 
     this.usuarioService.buscarUsuarios().subscribe({
       next: (res) => {
         this.usuarios = res
       },
-      error: () => this.alertService.showErrorAlert("erro ao buscar usuários")
+      error: () => this.alertService.showErrorAlert("Erro ao buscar usuários!")
     });
 
     this.createForm();
@@ -75,13 +77,18 @@ export class InscricaoComponent implements OnInit {
     this.inscricaoService.realizarInscricao(inscricao).subscribe({
 
       next: () => {
-        this.alertService.showSuccessAlert("Inscrição realizada com sucesso")
+        this.alertService.showSuccessAlert("Inscrição realizada com sucesso!")
+        this.onCancel();
       },
       error: (err) => {
-        this.alertService.showErrorAlert("erro na inscrição")
+        this.alertService.showErrorAlert("Erro ao se inscrever!")
       },
 
     });
+  }
+
+  public onCancel() {
+    this.location.back();
   }
 
   public hasErrors(field: string): boolean {
