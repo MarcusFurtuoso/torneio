@@ -1,22 +1,24 @@
 <div class="w-full flex justify-content-center pt-5">
   <div class="surface-card w-4 p-4 shadow-3 border-round-md">
     <div class="mb-5 font-bold text-2xl text-center">
-      {{torneioAtual.nome}}
+      {{ torneioAtual.nome }}
     </div>
 
-    <form [formGroup]="form" (submit)="onSubmit()" class="flex flex-column
-    justify-content-between gap-3">
-
-
+    <form
+      [formGroup]="form"
+      (submit)="onSubmit()"
+      class="flex flex-column justify-content-between gap-3"
+    >
       <div class="field p-fluid mt-2 flex flex-column gap-3">
-          <p-dropdown
+        <p-dropdown
           [options]="categorias"
           formControlName="categoriaSelecionada"
           optionLabel="nome"
           placeholder="Selecione a categoria"
         />
+        <span *ngIf="form.hasError('id')"> Campo obrigatório </span>
 
-          <p-dropdown
+        <p-dropdown
           [options]="usuarios"
           formControlName="usuarioSelecionado"
           optionLabel="nome"
@@ -26,28 +28,25 @@
         />
       </div>
 
-
       <!-- // button submit -->
       <button
-        pButton pRipple
+        pButton
+        pRipple
         type="submit"
         label="Realizar inscrição"
         class="w-full mt-4"
         [loading]="loading"
-      >
-      </button>
+      ></button>
 
       <button
-        pButton pRipple
+        pButton
+        pRipple
         type="cancel"
         label="Cancelar"
         class="w-full mt-4"
-        (click)='onCancel()'
+        (click)="onCancel()"
         [loading]="loading"
-      >
-      </button>
-
+      ></button>
     </form>
   </div>
 </div>
-

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Categoria, InscricaoForm, Torneio, Usuario } from 'src/app/dto/model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -57,15 +57,15 @@ export class InscricaoComponent implements OnInit {
 
   private createForm(): void {
     this.form = this.formBuilder.group({
-      categoriaSelecionada: [null],
-      usuarioSelecionado: [null]
+      categoriaSelecionada: [Validators.nullValidator],
+      usuarioSelecionado: [Validators.nullValidator]
     });
   };
 
   onSubmit() {
     const inscricao = new InscricaoForm();
 
-    const categoriaId = this.form.get('categoriaSelecionada')?.value;
+    const categoriaId= this.form.get('categoriaSelecionada')?.value;
     inscricao.categoriaId = categoriaId.id;
 
     const usuario1 = JSON.parse(localStorage.getItem('usuario-logado')!);
@@ -74,6 +74,7 @@ export class InscricaoComponent implements OnInit {
     const usuario2 = this.form.get('usuarioSelecionado')?.value;
     inscricao.usuario2Id = usuario2.id;
 
+
     this.inscricaoService.realizarInscricao(inscricao).subscribe({
 
       next: () => {
@@ -81,7 +82,7 @@ export class InscricaoComponent implements OnInit {
         this.onCancel();
       },
       error: (err) => {
-        this.alertService.showErrorAlert("Erro ao se inscrever!")
+        this.alertService.showErrorAlert("Inscrição não realizada!")
       },
 
     });
